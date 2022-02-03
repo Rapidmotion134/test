@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+  </head>
+  <body
+    style="margin: 0; padding: 0; width: 100%; height: 100%; min-height: 100vh"
+  >
+    <div
+      class="parent"
+      style="
+        display: grid;
+        grid-template-columns: minmax(150px, 25%) 1fr;
+        height: 100%;
+        min-height: 100vh;
+      "
+    >
+      <div
+        class="section yellow"
+        style="
+          background-color: #1e8de1;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-direction: column;
+        "
+        contenteditable
+      >
+        <h1>Quantity:</h1>
+        <input type="number" name="input" id="input" oninput="getValue()" />
+      </div>
+      <div
+        id="section2"
+        class="section purple"
+        style="
+          height: 100%;
+          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-direction: column;
+        "
+        contenteditable
+      >
+        <div
+          id="div"
+          style="
+            display: flex;
+            width: 90%;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: lightgray;
+            margin: 5px 0;
+            box-shadow: 4px 4px 8px 0 rgb(0 0 0 / 20%);
+            border: black solid 1px;
+            border-radius: 20px;
+          "
+        >
+          1
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const div = document.getElementById("div");
+    function getValue() {
+      const input = document.getElementById("input");
+      const section2 = document.getElementById("section2");
+      let length = section2.childNodes.length;
+      while (length != 0) {
+        section2.childNodes[0].remove();
+        length--;
+      }
+      for (let i = 1; i <= input.value; i++) {
+        const clone = div.cloneNode("true");
+        clone.innerText = i;
+        section2.appendChild(clone);
+      }
+    }
+  </script>
+</html>
